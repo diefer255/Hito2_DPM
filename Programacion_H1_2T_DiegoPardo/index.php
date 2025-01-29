@@ -4,6 +4,12 @@ include 'datos.php';
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<nav>
+  <div>
+    <button class="nav-link" id="nav-contact-tab" type="button" onclick="window.location.href = 'index.php'">Inicio</button>
+    <button class="nav-link" id="nav-disabled-tab" type="button" onclick="window.location.href = 'precios.html'">Precios</button>
+  </div>
+</nav>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StreamWeb</title>
@@ -109,11 +115,32 @@ include 'datos.php';
                 <th>Plan Base</th>
                 <th>Paquete</th>
                 <th>Duración</th>
+                <th>Precio Mensual</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($usuarios as $usuario): ?>
+            <?php foreach ($usuarios as $usuario): 
+            $precios_planes = [
+                "Plan Básico" => 9.99,
+                "Plan Estándar" => 13.99,
+                "Plan Premium" => 17.99
+            ];
+
+            $precios_paquetes = [
+                "Deporte" => 6.99,
+                "Cine" => 7.99,
+                "Infantil" => 4.99,
+                "Ninguno" => 0
+            ];
+            
+            $precio_plan = $precios_planes[$usuario['nombre_plan']];
+            $precio_paquete = $precios_paquetes[$usuario['paquete']];
+            $precio_total = $precios_planes[$usuario['nombre_plan']];
+            if ($usuario['paquete'] !== "Ninguno") {
+                $precio_total += $precios_paquetes[$usuario['paquete']];
+            }
+            ?>
                 <tr>
                     <td><?= $usuario['nombre'] ?></td>
                     <td><?= $usuario['correo'] ?></td>
@@ -121,6 +148,7 @@ include 'datos.php';
                     <td><?= $usuario['nombre_plan'] ?></td>
                     <td><?= $usuario['paquete'] ?></td>
                     <td><?= $usuario['duracion_suscripcion'] ?></td>
+                    <td>Plan:<?= $precio_plan . " €" ?> <br>Paquete: <?= $precio_paquete . " €" ?><br>Total: <?= $precio_total . " €" ?> </td>
                     <td>
                         <form method="GET">
                             <input type="hidden" name="accion" value="modificar">
