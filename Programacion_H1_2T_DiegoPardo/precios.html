@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreamWeb</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 700px;
+        }
+        img {
+            width: 60%;
+            height: auto;
+        }
+        button { width: 100%; padding: 10px; margin-bottom: 10px; }
+        button { background-color: #007BFF; color: #fff;}
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div>
+            <button class="nav-link" id="nav-contact-tab" type="button" onclick="window.location.href = 'index.php'">Inicio</button>
+            <button class="nav-link" id="nav-disabled-tab" type="button" onclick="window.location.href = 'precios.html'">Precios</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <img src="imagenes/precios.png" alt="Imagen de Precios">
+    </div>
+
+</body>
+</html>
